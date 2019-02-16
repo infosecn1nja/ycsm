@@ -10,6 +10,7 @@ If HTTPS was selected, it will automatically setup letsencrypt certbot and obtai
 * Block Vulnerability Scanners & Bots
 * Auto SSL setup for HTTPS using letsencrypt certbot.
 * Adds original source ip to user-agent header for easy tracking.
+* Auto-Renew for Let's Encrypt SSL Certificates
 
 ## Getting Started
 ```
