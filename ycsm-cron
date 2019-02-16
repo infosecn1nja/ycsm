@@ -1,0 +1,10 @@
+# /etc/cron.d/nysm: crontab entries for the certbot package
+#
+# Upstream recommends attempting renewal twice a day
+#
+# Eventually, this will be an opportunity to validate certificates
+# haven't been revoked, etc.  Renewal will only occur if expiration
+# is within 30 days.
+#!/bin/sh
+
+0 0,12 * * * root python -c 'import random; import time; time.sleep(random.random() * 3600)' && /opt/letsencrypt/certbot-auto renew
