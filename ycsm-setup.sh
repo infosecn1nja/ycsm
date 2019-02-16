@@ -73,8 +73,10 @@ ycsm_install() {
   cp ycsm-cron /etc/cron.d/ycsm
   check_errors
 
-  ycsm_action "Copy maps & security configuration into nginx folder"
+  ycsm_action "Copy nginx.conf, maps & security configuration into nginx folder"
   cp -rf maps security /etc/nginx
+  cp -rf /etc/nginx.conf /etc/nginx.conf.bak 
+  cp -rf nginx.conf /etc/nginx.conf
   check_errors
 
   ycsm_action "Finished installing dependencies!"
