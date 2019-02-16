@@ -75,8 +75,8 @@ ycsm_install() {
 
   ycsm_action "Copy nginx.conf, maps & security configuration into nginx folder"
   cp -rf maps security /etc/nginx
-  mv /etc/nginx.conf /etc/nginx/nginx.conf.bak 
-  cp -rf ./nginx.conf /etc/nginx.conf
+  mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak 
+  cp -rf ./nginx.conf /etc/nginx/nginx.conf
   check_errors
 
   ycsm_action "Finished installing dependencies!"
