@@ -81,8 +81,6 @@ ycsm_install() {
 
   ycsm_action "Installing fail2ban..."
   apt-get install -y fail2ban
-  echo -e '[Definition]\nfailregex = ^<HOST> -.*"(GET|POST|HEAD).*HTTP.*" 403\nignoreregex =' > /etc/fail2ban/filter.d/nginx-403.conf
-  echo -e '[Definition]\nfailregex = ^<HOST> -.*"(GET|POST|HEAD).*HTTP.*" 404\nignoreregex =' > /etc/fail2ban/filter.d/nginx-404.conf  
   check_errors
   
   ycsm_action "Finished installing dependencies!"
@@ -144,16 +142,26 @@ ycsm_status() {
   netstat -tulpn | grep -E 'nginx'
 }
 
+ycsm_fail2ban() {
+  echo -e '[Definition]\nfailregex = ^<HOST> -.*"(GET|POST|HEAD).*HTTP.*" 403\nignoreregex =' > /etc/fail2ban/filter.d/nginx-403.conf
+  echo -e '[Definition]\nfailregex = ^<HOST> -.*"(GET|POST|HEAD).*HTTP.*" 404\nignoreregex =' > /etc/fail2ban/filter.d/nginx-404.conf
+  
+  cp -rf /etc/fail2ban/jail.conf /etc/fail2ban/jail.conf.bak
+  
+  echo -e '\n[nginx-403]\n\nenabled = true\nport = http,https\nfilter = nginx-403\nlogpath = /var/log/nginx/access.log\nmaxretry = 5\nfindtime = 300' >> /etc/fail2ban/jail.conf
+  echo -e '\n[nginx-404]\n\nenabled = true\nport = http,https\nfilter = nginx-404\nlogpath = /var/log/nginx/access.log\nmaxretry = 10\nfindtime = 300' >> /etc/fail2ban/jail.conf
+}
+
 ycsm_check_root
 
-if [ "$#" -ne 3 ]; then
+if [ "$#" -ne 4 ]; then
   PS3="
   YCSM - Select an Option:  "
 
   finshed=0
   while (( !finished )); do
     printf "\n"
-    options=("Setup Nginx Redirector" "Check Status" "Blocking Shodan" "Quit")
+    options=("Setup Nginx Redirector" "Check Status" "Blocking Shodan" "Configure Fail2Ban" "Quit")
     select opt in "${options[@]}"
     do
       case $opt in
@@ -167,6 +175,10 @@ if [ "$#" -ne 3 ]; then
           ;;
         "Blocking Shodan")
           ycsm_block_shodan
+          break;
+          ;;
+        "Configure Fail2Ban")
+          ycsm_fail2ban
           break;
           ;;          
         "Quit")
