@@ -79,6 +79,12 @@ ycsm_install() {
   cp -rf ./nginx.conf /etc/nginx/nginx.conf
   check_errors
 
+  ycsm_action "Installing fail2ban..."
+  apt-get install -y fail2ban
+  echo -e '[Definition]\nfailregex = ^<HOST> -.*"(GET|POST|HEAD).*HTTP.*" 403\nignoreregex =' > /etc/fail2ban/filter.d/nginx-403.conf
+  echo -e '[Definition]\nfailregex = ^<HOST> -.*"(GET|POST|HEAD).*HTTP.*" 404\nignoreregex =' > /etc/fail2ban/filter.d/nginx-404.conf  
+  check_errors
+  
   ycsm_action "Finished installing dependencies!"
 }
 
