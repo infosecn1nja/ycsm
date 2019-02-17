@@ -11,6 +11,7 @@ If HTTPS was selected, it will automatically setup letsencrypt certbot and obtai
 * Auto SSL setup for HTTPS using letsencrypt certbot.
 * Adds original source ip to user-agent header for easy tracking.
 * Auto-Renew for Let's Encrypt SSL Certificates
+* Nginx Hardening Servers with Fail2Ban
 
 ## Getting Started
 ```
@@ -21,7 +22,8 @@ chmod +x ycsm-setup.sh
 1) Setup Nginx Redirector
 2) Check Status
 3) Blocking Shodan
-4) Quit
+4) Configure Fail2Ban
+5) Quit
 
   YCSM - Select an Option:
 ```
