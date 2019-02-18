@@ -12,7 +12,7 @@ If HTTPS was selected, it will automatically setup letsencrypt certbot and obtai
 * Adds original source ip to user-agent header for easy tracking.
 * Auto-Renew for Let's Encrypt SSL Certificates
 * Nginx Hardening Servers with Fail2Ban
-* Block Access Redirector From Mobile
+* Block Accessing Redirector From Mobile
 
 ## Getting Started
 ```
