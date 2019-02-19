@@ -5,14 +5,15 @@ This is a quick script installation for redirector setup (nginx reverse proxy, l
 If HTTPS was selected, it will automatically setup letsencrypt certbot and obtain valid letsencrypt SSL certificates for your redirector domain name, and start nginx using the generated configuration. Using redirector an added benefit of using a separate host if domain is burned, real IP of C2 will still be useable. 
 
 ## Features
-* Evade Vendor Sandboxes
-* Block Shodan Access
-* Block Vulnerability Scanners & Bots
+* Evade Vendor Sandboxes.
+* Block Shodan Access.
+* Block Vulnerability Scanners & Bots.
 * Auto SSL setup for HTTPS using letsencrypt certbot.
 * Adds original source ip to user-agent header for easy tracking.
-* Auto-Renew for Let's Encrypt SSL Certificates
-* Nginx Hardening Servers with Fail2Ban
-* Block Accessing Redirector From Mobile
+* Auto-Renew for Let's Encrypt SSL Certificates.
+* Nginx Hardening Servers with Fail2Ban.
+* Block Accessing Redirector From Mobile.
+* JQuery profiling users inspired by APT29 (https://github.com/samsayen/JQueryingU).
 
 ## Getting Started
 ```
