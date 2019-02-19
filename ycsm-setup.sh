@@ -115,6 +115,13 @@ ycsm_initialize() {
   rm $CONF_DST.bak
   check_errors
 
+  ycsm_action "Move Sites..."
+  mv /var/www/html/index.html /var/www/html/index.html.bak
+  cp -rf ./sites/index.html /var/www/html/index.html
+  mkdir -p /var/www/html/static/js
+  cp -rf ./sites/jquery-2.2.4.min.js /var/www/html/static/js/jquery-2.2.4.min.js
+  check_errors
+
   ycsm_action "Restarting Nginx..."
   systemctl restart nginx.service
   check_errors
