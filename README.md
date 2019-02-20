@@ -29,3 +29,7 @@ chmod +x ycsm-setup.sh
 
   YCSM - Select an Option:
 ```
+
+## Resources
+* [Cobalt Strike Team Server Population Study](https://blog.cobaltstrike.com/2019/02/19/cobalt-strike-team-server-population-study/)
+* [Red Team Infrastructure Wiki](https://github.com/bluscreenofjeff/Red-Team-Infrastructure-Wiki)
