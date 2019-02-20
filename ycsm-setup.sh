@@ -154,8 +154,10 @@ ycsm_fail2ban() {
   cp -rf /etc/fail2ban/jail.conf /etc/fail2ban/jail.conf.bak
   echo -e '[Definition]\nfailregex = ^<HOST> -.*"(GET|POST|HEAD).*HTTP.*" 403\nignoreregex =' > /etc/fail2ban/filter.d/nginx-403.conf
   echo -e '[Definition]\nfailregex = ^<HOST> -.*"(GET|POST|HEAD).*HTTP.*" 404\nignoreregex =' > /etc/fail2ban/filter.d/nginx-404.conf
+  echo -e '[Definition]\nfailregex = ^<HOST> -.*"(GET|POST|HEAD).*HTTP.*" 444\nignoreregex =' > /etc/fail2ban/filter.d/nginx-444.conf
   echo -e '\n[nginx-403]\n\nenabled = true\nport = http,https\nfilter = nginx-403\nlogpath = /var/log/nginx/access.log\nmaxretry = 5\nfindtime = 300' >> /etc/fail2ban/jail.conf
   echo -e '\n[nginx-404]\n\nenabled = true\nport = http,https\nfilter = nginx-404\nlogpath = /var/log/nginx/access.log\nmaxretry = 10\nfindtime = 300' >> /etc/fail2ban/jail.conf
+  echo -e '\n[nginx-444]\n\nenabled = true\nport = http,https\nfilter = nginx-444\nlogpath = /var/log/nginx/access.log\nmaxretry = 10\nfindtime = 300' >> /etc/fail2ban/jail.conf
   ycsm_action "Done!"
   check_errors
 }
