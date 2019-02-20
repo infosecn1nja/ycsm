@@ -64,7 +64,7 @@ ycsm_install() {
   check_errors
 
   ycsm_action "Installing nginx git..."
-  apt-get install -y nginx git
+  apt-get install -y nginx nginx-extras git
 
   ycsm_action "Installing certbot..."
   git clone https://github.com/certbot/certbot.git /opt/letsencrypt > /dev/null 2>&1\
