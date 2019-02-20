@@ -1,6 +1,6 @@
 # You Can't See Me (YCSM)
 
-This is a quick script installation for redirector setup (nginx reverse proxy, letsencrypt) compatible with some popular RATS (Cobalt Strike, Empire, Metasploit).
+This is a quick script installation for resilient redirector using nginx reverse proxy and letsencrypt compatible with some popular RATS (Cobalt Strike, Empire, Metasploit).
 
 If HTTPS was selected, it will automatically setup letsencrypt certbot and obtain valid letsencrypt SSL certificates for your redirector domain name, and start nginx using the generated configuration. Using redirector an added benefit of using a separate host if domain is burned, real IP of C2 will still be useable. 
 
