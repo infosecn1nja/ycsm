@@ -13,7 +13,7 @@ If HTTPS was selected, it will automatically setup letsencrypt certbot and obtai
 * Auto-Renew for Let's Encrypt SSL Certificates.
 * Nginx Hardening Servers with Fail2Ban.
 * Block Accessing Redirector From Mobile.
-* JQuery profiling users inspired by APT29 (https://github.com/samsayen/JQueryingU).
+* JQuery profiling users inspired by APT29 useful to sniff tier 1 SOC (https://github.com/samsayen/JQueryingU).
 
 ## Getting Started
 ```
