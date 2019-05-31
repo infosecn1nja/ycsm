@@ -121,7 +121,23 @@ ycsm_initialize() {
   mkdir -p /var/www/html/static/js
   cp -rf ./sites/jquery-2.2.4.min.js /var/www/html/static/js/jquery-2.2.4.min.js
   check_errors
-
+  
+  ycsm_action "Settings whitelist ip address"
+  ip=$(echo $c2_server|cut -d ":" -f1)
+  # Make a rule that allows port 80/443 access only from redirector
+  # IPv4
+  iptables -A INPUT -p tcp -s $ip --dport 443 -j ACCEPT
+  iptables -A INPUT -p tcp --dport 443 -j DROP
+  iptables -A INPUT -p tcp -s $ip --dport 80 -j ACCEPT
+  iptables -A INPUT -p tcp --dport 80 -j DROP
+  # IPv6
+  ip6tables -A INPUT -p tcp -s $ip --dport 443 -j ACCEPT
+  ip6tables -A INPUT -p tcp --dport 443 -j DROP
+  ip6tables -A INPUT -p tcp -s $ip --dport 80 -j ACCEPT
+  ip6tables -A INPUT -p tcp --dport 80 -j DROP
+  
+  iptables-save > /etc/network/iptables.rules
+  
   ycsm_action "Restarting Nginx..."
   systemctl restart nginx.service
   check_errors
